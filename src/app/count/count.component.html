@@ -1,0 +1,24 @@
+<div style="height: 100vh">
+  <div class="flex-center flex-row">
+    <h3 style="margin-right: 10px;">Counter: {{count}}</h3>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show(); show();" mdbWavesEffect>Increment</button>
+    <div><a href="javascript:void(0);" (click)="noIncrement($event)">Reset counter</a></div>
+  </div>
+</div>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Increment counter</h4>
+      </div>
+      <div class="modal-body modal-body-column">
+        <span>Current counter <strong>{{count}}</strong></span> <span>Next counter <strong>{{countNext}}</strong></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="basicModal.hide(); increment($event)">Confirm</button>
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide();" mdbWavesEffect>Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
