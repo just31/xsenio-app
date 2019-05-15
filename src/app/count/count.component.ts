@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-count',
@@ -11,6 +12,9 @@ export class CountComponent implements OnInit {
   // We assign the initial and subsequent values ​​of the counter.
   public count: number = JSON.parse(localStorage.getItem('count')) ? JSON.parse(localStorage.getItem('count')) : 0;
   public countNext: number = JSON.parse(localStorage.getItem('count_next')) ? JSON.parse(localStorage.getItem('count_next')) : 2;
+
+  constructor(private router: Router) {
+  }
 
   // Save value counter to localstorage.
   private setLocale_storage(): any {
@@ -38,7 +42,7 @@ export class CountComponent implements OnInit {
   increment(ev): any {
     if (this.count === 1) {
       this.count = JSON.parse(localStorage.getItem('count')) + 2;
-      this.countNext = JSON.parse(localStorage.getItem('count')) * 2;
+      this.countNext = JSON.parse(localStorage.getItem('count')) + 2;
 
       this.setLocale_storage();
     } else {
@@ -47,7 +51,11 @@ export class CountComponent implements OnInit {
 
       this.setLocale_storage();
     }
+  }
 
+  logout(ev): any {
+    localStorage.removeItem('currentUser');
+    this.router.navigateByUrl('', {skipLocationChange: true});
   }
 
   // Reset the counter.

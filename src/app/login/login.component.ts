@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // Import the service receiving data from the nodejs server.
 import { LoginService } from './login.service';
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private loginService: LoginService) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   errText: boolean;
 
@@ -45,6 +46,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.loginService.errText);
+
+    if (localStorage.getItem('currentUser')) {
+      this.router.navigateByUrl('/count', {skipLocationChange: true});
+    }
   }
 
 }
